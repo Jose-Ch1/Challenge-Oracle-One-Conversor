@@ -1,37 +1,33 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import logica.LogicaConversor;
 
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.SystemColor;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class ConversorDeMonedas extends JFrame {
+public class ConversorDeDistancia extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtConvertir;
 	private JTextField txtResultado;
-	
-	
+
 	double valor;
-	int moneda1;
-	int moneda2;
-	
-	
+	int distancia1;
+	int distancia2;
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +35,7 @@ public class ConversorDeMonedas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ConversorDeMonedas frame = new ConversorDeMonedas();
+					ConversorDeDistancia frame = new ConversorDeDistancia();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +47,7 @@ public class ConversorDeMonedas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConversorDeMonedas() {
+	public ConversorDeDistancia() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 791, 650);
 		contentPane = new JPanel();
@@ -60,41 +56,34 @@ public class ConversorDeMonedas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Conversor de Monedas");
+		JLabel lblNewLabel = new JLabel("Conversor de Distancia");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 		lblNewLabel.setBounds(163, 21, 556, 61);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Seleccione las divisas a las  que desea hacer la conversión:");
+		JLabel lblNewLabel_1 = new JLabel("Seleccione las medidas a las  que desea hacer la conversión:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1.setBounds(24, 108, 569, 30);
 		contentPane.add(lblNewLabel_1);
 		
-		JComboBox cmbMoneda1 = new JComboBox();
-		cmbMoneda1.setToolTipText("");
-		cmbMoneda1.setForeground(new Color(102, 255, 153));
-		cmbMoneda1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		cmbMoneda1.setBackground(SystemColor.scrollbar);
-		cmbMoneda1.setModel(new DefaultComboBoxModel(new String[] {"--", "Colones (CRC)", "Dolares (USD)", "Euros (EUR)", "Peso Mexico (MXN)"}));
-		cmbMoneda1.setSelectedIndex(1);
-		cmbMoneda1.setBounds(24, 151, 269, 67);
-		contentPane.add(cmbMoneda1);
+		JComboBox cmbDist1 = new JComboBox();
+		cmbDist1.setToolTipText("");
+		cmbDist1.setForeground(new Color(102, 255, 153));
+		cmbDist1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		cmbDist1.setBackground(SystemColor.scrollbar);
+		cmbDist1.setModel(new DefaultComboBoxModel(new String[] {"--", "Centímetros ", "Metro", "kilómetros"}));
+		cmbDist1.setSelectedIndex(1);
+		cmbDist1.setBounds(24, 151, 269, 67);
+		contentPane.add(cmbDist1);
 		
-		JComboBox cmbMoneda2 = new JComboBox();
-		cmbMoneda2.setForeground(new Color(102, 255, 153));
-		cmbMoneda2.setFont(new Font("Tahoma", Font.BOLD, 18));
-		cmbMoneda2.setModel(new DefaultComboBoxModel(new String[] {"--", "Colones (CRC)", "Dolares (USD)", "Euros (EUR)", "Peso Mexico (MXN)"}));
-		cmbMoneda2.setSelectedIndex(1);
-		cmbMoneda2.setBackground(SystemColor.scrollbar);
-		cmbMoneda2.setBounds(399, 151, 269, 67);
-		contentPane.add(cmbMoneda2);
-		
-		txtConvertir = new JTextField();
-		txtConvertir.setBackground(SystemColor.window);
-		txtConvertir.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtConvertir.setBounds(24, 259, 269, 67);
-		contentPane.add(txtConvertir);
-		txtConvertir.setColumns(10);
+		JComboBox cmbDist2 = new JComboBox();
+		cmbDist2.setForeground(new Color(102, 255, 153));
+		cmbDist2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		cmbDist2.setModel(new DefaultComboBoxModel(new String[] {"--", "Centímetros ", "Metro", "kilómetros"}));
+		cmbDist2.setSelectedIndex(1);
+		cmbDist2.setBackground(SystemColor.scrollbar);
+		cmbDist2.setBounds(399, 151, 269, 67);
+		contentPane.add(cmbDist2);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Escriba la cantidad a convertir: ");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -106,19 +95,19 @@ public class ConversorDeMonedas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//creamos las variables para itilizarlas en la parte logica
 				valor = Double.parseDouble(txtConvertir.getText());
-				moneda1 = cmbMoneda1.getSelectedIndex();
-				moneda2 = cmbMoneda2.getSelectedIndex();
+				distancia1 = cmbDist1.getSelectedIndex();
+				distancia2 = cmbDist2.getSelectedIndex();
 				
 				//lamamos la parte logica de la aplicacion para crear un puente y conectarlas entre si
-				LogicaConversor puente = new LogicaConversor();
+				LogicaConversor puente2 = new LogicaConversor();
 				
 				// Enviamos los datos a las variables de la parte logica
-				puente.setValor(valor);
-				puente.setDatoConv1(moneda1);
-				puente.setDatoConv2(moneda2);
+				puente2.setValor(valor);
+				puente2.setDatoConv1(distancia1);
+				puente2.setDatoConv2(distancia2);
 				
 				//para ejecutar el metodo tenemos que llamarlo
-				double resultadoFinal = puente.convertirDivisas();
+				double resultadoFinal = puente2.convertirMedidas();
 				
 				txtResultado.setText("");
 				txtResultado.setText(String.valueOf(resultadoFinal));
@@ -183,14 +172,30 @@ public class ConversorDeMonedas extends JFrame {
 				
 				txtConvertir.setText("");
 				txtResultado.setText("");
-				cmbMoneda1.setSelectedIndex(0);
-				cmbMoneda2.setSelectedIndex(0);
+				cmbDist1.setSelectedIndex(0);
+				cmbDist2.setSelectedIndex(0);
 				
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnNewButton.setBounds(550, 359, 169, 82);
 		contentPane.add(btnNewButton);
+		
+		txtConvertir = new JTextField();
+		txtConvertir.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtConvertir.setColumns(10);
+		txtConvertir.setBackground(Color.WHITE);
+		txtConvertir.setBounds(24, 264, 269, 67);
+		contentPane.add(txtConvertir);
+		
+		txtResultado = new JTextField();
+		txtResultado.setForeground(Color.BLACK);
+		txtResultado.setFont(new Font("Tahoma", Font.BOLD, 30));
+		txtResultado.setEditable(false);
+		txtResultado.setColumns(10);
+		txtResultado.setBackground(SystemColor.activeCaption);
+		txtResultado.setBounds(152, 359, 337, 82);
+		contentPane.add(txtResultado);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\PC\\Desktop\\gitProyects\\ConversorDeMonedas\\src\\recursos\\img\\fondo.jpg"));

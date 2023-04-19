@@ -67,7 +67,7 @@ public class PantallaPrincipal extends JFrame {
 		});
 		brnConvDivisas.setIcon(new ImageIcon("C:\\Users\\PC\\Desktop\\gitProyects\\ConversorDeMonedas\\src\\recursos\\img\\moneda.png"));
 		brnConvDivisas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		brnConvDivisas.setBounds(29, 149, 271, 64);
+		brnConvDivisas.setBounds(29, 184, 271, 64);
 		contentPane.add(brnConvDivisas);
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccione el conversor que desee utilizar:");
@@ -75,22 +75,26 @@ public class PantallaPrincipal extends JFrame {
 		lblNewLabel_1.setBounds(29, 102, 352, 24);
 		contentPane.add(lblNewLabel_1);
 		
-		JButton brnConvTemperatura = new JButton("Conversor de Temperatura");
-		brnConvTemperatura.setIcon(new ImageIcon("C:\\Users\\PC\\Desktop\\gitProyects\\ConversorDeMonedas\\src\\recursos\\img\\temperatura.png"));
-		brnConvTemperatura.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		brnConvTemperatura.setBounds(29, 241, 271, 64);
-		contentPane.add(brnConvTemperatura);
-		
-		JButton brnConvDistancia = new JButton("Conversor de Distancia");
-		brnConvDistancia.setIcon(new ImageIcon("C:\\Users\\PC\\Desktop\\gitProyects\\ConversorDeMonedas\\src\\recursos\\img\\distancia.png"));
-		brnConvDistancia.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		brnConvDistancia.setBounds(29, 335, 271, 64);
-		contentPane.add(brnConvDistancia);
+		JButton brnConvMedidas = new JButton("Conversor de Distancia");
+		brnConvMedidas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				ConversorDeDistancia CTemperatura = new ConversorDeDistancia();
+				CTemperatura.setVisible(true);
+				CTemperatura.setLocationRelativeTo(null);
+			}
+		});
+		brnConvMedidas.setIcon(new ImageIcon("C:\\Users\\PC\\Desktop\\gitProyects\\ConversorDeMonedas\\src\\recursos\\img\\distancia.png"));
+		brnConvMedidas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		brnConvMedidas.setBounds(29, 310, 271, 64);
+		contentPane.add(brnConvMedidas);
 		
 		JButton btnSalir = new JButton("SALIR");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+				
 			}
 		});
 		btnSalir.setIcon(new ImageIcon("C:\\Users\\PC\\Desktop\\gitProyects\\ConversorDeMonedas\\src\\recursos\\img\\salir.png"));

@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class PantallaPrincipal extends JFrame {
 
@@ -58,6 +59,7 @@ public class PantallaPrincipal extends JFrame {
 		brnConvDivisas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				dispose();
 				ConversorDeMonedas CMonedas = new ConversorDeMonedas();
 				CMonedas.setVisible(true);
 				CMonedas.setLocationRelativeTo(null);
@@ -86,6 +88,13 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(brnConvDistancia);
 		
 		JButton btnSalir = new JButton("SALIR");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnSalir.setIcon(new ImageIcon("C:\\Users\\PC\\Desktop\\gitProyects\\ConversorDeMonedas\\src\\recursos\\img\\salir.png"));
+		btnSalir.setForeground(Color.RED);
 		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnSalir.setBounds(266, 433, 186, 51);
 		contentPane.add(btnSalir);
@@ -96,7 +105,7 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\PC\\Desktop\\gitProyects\\ConversorDeMonedas\\src\\recursos\\img\\fondo1.jpg"));
+		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\PC\\Desktop\\gitProyects\\ConversorDeMonedas\\src\\recursos\\img\\fondo.jpg"));
 		lblNewLabel_3.setBounds(0, 0, 791, 508);
 		contentPane.add(lblNewLabel_3);
 	}

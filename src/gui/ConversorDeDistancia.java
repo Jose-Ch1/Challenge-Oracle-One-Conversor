@@ -111,7 +111,7 @@ public class ConversorDeDistancia extends JFrame {
 				
 				txtResultado.setText("");
 				txtResultado.setText(String.valueOf(resultadoFinal));
-				txtConvertir.setText("");
+				
 				
 				
 				
